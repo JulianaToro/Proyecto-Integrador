@@ -7,16 +7,16 @@ from django.contrib.auth import authenticate, login
 
 
 # Vista Sing Up
-def singupaccount(request):
+def singup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('login')
+            return redirect('login.html')
     else:
         form = UserCreationForm()
-    return render(request, 'singupaccount.html', {'form': form})
+    return render(request, 'singup.html', {'form': form})
 
 # Vista Login
 def login_view(request):
@@ -32,4 +32,4 @@ def login_view(request):
 
     else:
         form = CustomAuthenticationForm()
-    return render(request, 'loginaccount.html', {'form': form})
+    return render(request, 'login.html', {'form': form})
